@@ -1,0 +1,131 @@
+<h1 class="m-3 text-primary border-bottom border-primary border-opacity-25 border-2 pb-2">Finalización de compra</h1>
+<form [formGroup]="formularioCompra" (ngSubmit)="submitCompra()" class="m-3">
+    
+    <div class="alert alert-success" role="alert" *ngIf="submit && ok">
+        Compra finalizada correctamente
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="submit && !ok">
+        Ha ocurrido un error
+    </div>
+    
+    <h2>DATOS DE CONTACTO</h2>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="mail" class="form-label">Email</label>
+            <input type="email" class="form-control" [ngClass]="{
+            'is-valid': (cMail?.valid && (cMail?.dirty || cMail?.touched)),
+            'is-invalid': (cMail?.invalid && (cMail?.dirty || cMail?.touched))
+         }" id="mail" placeholder="Ingresar mail" formControlName="mail" required>
+            <div *ngIf="cMail?.invalid && (cMail?.dirty || cMail?.touched)" class="invalid-feedback">
+                <div *ngIf="!cMail?.errors?.['email'] && cApellido?.errors?.['required']">
+                    - Email obligatorio.
+                </div>
+                <div *ngIf="cMail?.errors?.['email']">
+                    - Formato de email incorrecto.
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-3"></div>
+    </div>
+    <h2>DATOS DEL DESTINATARIO</h2>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" [ngClass]="{
+           'is-valid': (cNombre?.valid && (cNombre?.dirty || cNombre?.touched)),
+           'is-invalid': (cNombre?.invalid && (cNombre?.dirty || cNombre?.touched))
+        }" id="nombre" placeholder="Ingresar nombre" formControlName="nombre" required>
+            <div *ngIf="cNombre?.invalid && (cNombre?.dirty || cNombre?.touched)" class="invalid-feedback">
+                <div *ngIf="cNombre?.errors?.['required']">
+                    - Nombre obligatorio.
+                </div>
+                <div *ngIf="cNombre?.errors?.['minlength']">
+                    - Mínimo 3 caracteres
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" [ngClass]="{
+            'is-valid': (cApellido?.valid && (cApellido?.dirty || cApellido?.touched)),
+            'is-invalid': (cApellido?.invalid && (cApellido?.dirty || cApellido?.touched))
+         }" id="apellido" placeholder="Ingresar apellido" formControlName="apellido" required>
+            <div *ngIf="cApellido?.invalid && (cApellido?.dirty || cApellido?.touched)" class="invalid-feedback">
+                <div *ngIf="cApellido?.errors?.['required']">
+                    - Apellido obligatorio.
+                </div>
+                <div *ngIf="cApellido?.errors?.['minlength']">
+                    - Mínimo 3 caracteres
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" class="form-control"  id="telefono" placeholder="Ingresar teléfono" formControlName="telefono">
+        </div>
+
+        <div class="col mb-3"></div>
+    </div>
+    <h2>DOMICILIO DEL DESTINATARIO</h2>  
+    <div class="row">
+        <div class="col mb-3">
+            <label for="calle" class="form-label">Calle</label>
+            <input type="text" class="form-control" [ngClass]="{
+           'is-valid': (cCalle?.valid && (cCalle?.dirty || cCalle?.touched)),
+           'is-invalid': (cCalle?.invalid && (cCalle?.dirty || cCalle?.touched))
+        }" id="calle" placeholder="Ingresar calle" formControlName="calle" required>
+            <div *ngIf="cCalle?.invalid && (cCalle?.dirty || cCalle?.touched)" class="invalid-feedback">
+                <div *ngIf="cCalle?.errors?.['required']">
+                    - Calle obligatoria.
+                </div>
+                <div *ngIf="cCalle?.errors?.['minlength']">
+                    - Mínimo 3 caracteres
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-3">
+            <label for="numero" class="form-label">Número</label>
+            <input type="text" class="form-control" [ngClass]="{
+           'is-valid': (cNumero?.valid && (cNumero?.dirty || cNumero?.touched)),
+           'is-invalid': (cNumero?.invalid && (cNumero?.dirty || cNumero?.touched))
+        }" id="numero" placeholder="Ingresar número" formControlName="numero" required>
+        <div *ngIf="cNumero?.invalid && (cNumero?.dirty || cNumero?.touched)" class="invalid-feedback">
+            <div *ngIf="cNumero?.errors?.['required']">
+                - Número obligatorio.
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="departamento" class="form-label">Departamento</label>
+            <input type="text" class="form-control" id="departamento" placeholder="Ingresar departamento" formControlName="departamento" >
+        </div>
+
+        <div class="col mb-3">
+            <label for="ciudad" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" [ngClass]="{
+           'is-valid': (cCiudad?.valid && (cCiudad?.dirty || cCiudad?.touched)),
+           'is-invalid': (cCiudad?.invalid && (cCiudad?.dirty || cCiudad?.touched))
+        }" id="ciudad" placeholder="Ingresar ciudad" formControlName="ciudad" required>
+            <div *ngIf="cCiudad?.invalid && (cCiudad?.dirty || cCiudad?.touched)" class="invalid-feedback">
+                <div *ngIf="cCiudad?.errors?.['required']">
+                    - Ciudad obligatoria.
+                </div>
+                <div *ngIf="cCiudad?.errors?.['minlength']">
+                    - Mínimo 3 caracteres
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="d-grid col-6 mx-auto mt-5">
+        <button type="submit" class="btn btn-primary m-3">Finalizar</button>
+    </div>
+</form>
